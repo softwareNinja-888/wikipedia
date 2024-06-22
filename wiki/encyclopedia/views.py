@@ -4,17 +4,15 @@ from django.urls import reverse
 from django import forms
 from . import util
 
-# class newForm(forms.Form):
-#     items = forms.CharField(label=False,placeholder="Search Encyclopedia")
-
 
 def index(request):
     list = util.list_entries()
 
     if  request.method == "POST":
-        search = request.POST["q"]
+        search = request.POST["q"].strip()
+        print(search)
+
         if inList(search,list):
-            print(search)
             return HttpResponseRedirect(reverse("wiki:direct", args=[f"{search}"]))
         else:
             return render(request,"encyclopedia/error.html",{
