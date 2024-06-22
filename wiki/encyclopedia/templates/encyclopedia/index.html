@@ -3,15 +3,11 @@
 <h1>All Pages</h1>
 
 <ul>
-  <!-- <li><a href="{% url 'wiki:direct' 'CSS'%}">CSS</a></li>
+  <li><a href="{% url 'wiki:direct' 'CSS'%}">CSS</a></li>
   <li><a href="{% url 'wiki:direct' 'Django'%}">Django</a></li>
   <li><a href="{% url 'wiki:direct' 'Python'%}">Python</a></li>
   <li><a href="{% url 'wiki:direct' 'Html'%}">HTML</a></li>
-  <li><a href="{% url 'wiki:direct' 'Git'%}">Git</a></li> -->
-
-  {% for entry in entries %} {% set en = entry.lower() %}
-  <li><a href="encyclopedia/{{ en }}.html">{{ entry }}</a></li>
-  {% endfor %}
+  <li><a href="{% url 'wiki:direct' 'Git'%}">Git</a></li>
 </ul>
 
 {% endblock %}
