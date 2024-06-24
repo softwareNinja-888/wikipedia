@@ -1,0 +1,12 @@
+{% extends 'encyclopedia/layout.html' %}
+{% block title %} Search Results {% endblock %}
+{% block body %}
+<h1>Search Results</h1>
+    <ul>
+    {% for i in list %}
+        <a href="{% url 'wiki:direct' i %}"><li>{{ i }}</li></a>
+    {% empty %}
+        <li>No results with {{ error }} in it.</li>
+    </ul>
+    {% endfor %}
+{% endblock %}

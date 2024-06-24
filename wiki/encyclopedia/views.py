@@ -7,24 +7,31 @@ from . import util
 
 def index(request):
     list = util.list_entries()
+    subList = []
 
+    # POST METHOD:
     if  request.method == "POST":
         search = request.POST["q"].strip()
-        print(search)
-
+        
         if inList(search,list):
             return HttpResponseRedirect(reverse("wiki:direct", args=[f"{search}"]))
         else:
-            return render(request,"encyclopedia/error.html",{
-                "error": search
-            })
-    
+                for i in list:
+                    if i.find(search) > 0:
+                        subList.append(i)
+
+                return render(request,"encyclopedia/results.html",{
+                    "error": search,
+                    "list": subList
+                })
+    # GET METHOD:
+
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
 
 def direct(request, title):
-    # GET METHOD:
+
     list = util.list_entries()
     titleCaps = title.upper()
     titleLow = title.lower()
@@ -41,21 +48,6 @@ def direct(request, title):
         return render(request, "encyclopedia/error.html",{
             "error": title
         })
-
-# def display(request):
-#     # POST METHOD:
-
-#     if request.method == "POST":
-#         search = request.POST["q"]
-#         # IF (search in list):
-#             #redirect to relavant page
-#         #else if (search not in list):
-#             #redirect to search page (alternative page)
-#             #click on the list for redirect
-
-
-
-#         return HttpResponse(search)
     
 def inList(n,list):
     name = n.upper()
