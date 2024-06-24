@@ -13,9 +13,33 @@ h1 {
 }
 
 textarea {
-    height: 90vh;
-    width: 80%;
+    height: 35vh;
+    width: 65vw;
+    resize: none;
 }
+.newForm {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: baseline;
+
+    padding: 40px;
+}
+
+label{
+    width: 35%;
+}
+.in {
+    width: 45vw;
+
+}
+/* .newForm{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: space-between;   
+} */
+
 
 .main {
     padding: 10px;

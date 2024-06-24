@@ -4,7 +4,10 @@ from django.urls import reverse
 from django import forms
 from . import util
 
-
+class newForm(forms.Form):
+    title = forms.CharField(label="Title",widget=forms.TextInput(attrs={'class' : 'in'}))
+    textarea = forms.CharField(widget=forms.Textarea(attrs={ 'class' : 'text','class' : 'in'}))
+    
 def index(request):
     list = util.list_entries()
     subList = []
@@ -49,6 +52,11 @@ def direct(request, title):
             "error": title
         })
     
+def new(request):
+    return render(request,"encyclopedia/new.html", {
+        "form": newForm()
+    })
+
 def inList(n,list):
     name = n.upper()
     listCaps = []
